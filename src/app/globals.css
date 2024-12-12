@@ -16,3 +16,61 @@ body {
   color: var(--blackColor);
   background: var(--whiteColor);
 }
+
+.btn-check {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
+}
+
+.color-circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  margin-right: 19px;
+  transition: border-color 0.3s ease;
+  position: relative;
+}
+
+.color-circle::after {
+  position: absolute;
+  content: "";
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  margin-right: 19px;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Color Variant specific styles */
+.color-circle.black {
+  background-color: var(--blackColor);
+  color: var(--blackColor);
+}
+
+.color-circle.blue {
+  background-color: var(--blueColor);
+  color: var(--blueColor);
+}
+
+.color-circle.violet {
+  background-color: var(--violetColor);
+  color: var(--violetColor);
+}
+
+.color-circle.cyan {
+  background-color: var(--grayColor);
+  color: var(--grayColor);
+}
+
+.btn-check:checked + .color-circle::after {
+  border-color: currentColor;
+}
