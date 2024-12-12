@@ -4,7 +4,7 @@ import React, { useState } from "react";
 const ColorVarient = ({ color, onColorChange }) => {
   return (
     <>
-      <p className="text-sm text-gray-600">Band Color</p>
+      <p className="text-sm text-gray-600 mb-6">Band Color</p>
       <div className="flex items-center gap-2">
         {color.map((item) => (
           <div key={item.id}>

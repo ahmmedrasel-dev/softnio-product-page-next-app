@@ -5,7 +5,7 @@ const SizeVarient = ({ sizes, onSizeChange }) => {
   return (
     <div>
       <p className="text-sm text-gray-600 mb-6">Wrist Size</p>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2">
         {sizes.map((item) => (
           <div key={item.id}>
             <input

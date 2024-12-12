@@ -13,7 +13,6 @@ const ProductDetails = ({ product }) => {
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedThumbnail, setSelectedThumbnail] = useState(product.thumbnail);
   const [quantity, setQuantity] = useState(1);
-  const [totalPrice, setTotalPrice] = useState(0);
 
   const handleColorChange = (colorId) => {
     const selectedColor = product.colors.find((color) => color.id === colorId);
@@ -48,17 +47,41 @@ const ProductDetails = ({ product }) => {
       return;
     }
 
-    const cartItem = {
-      id: crypto.randomUUID(),
-      title: product.title,
-      thumbnail: selectedThumbnail,
-      color: selectedColor,
-      size: selectedSize,
-      price: product.discountPrice,
-      quantity,
-    };
+    if (!selectedColor) {
+      toast.error("Please select a color.");
+      return;
+    }
+    if (!selectedSize) {
+      toast.error("Please select a size.");
+      return;
+    }
 
-    setCart((prevCart) => [...prevCart, cartItem]);
+    setCart((prevCart) => {
+      const existingItem = prevCart.find(
+        (item) => item.color === selectedColor && item.size === selectedSize
+      );
+
+      if (existingItem) {
+        return prevCart.map((item) =>
+          item === existingItem
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        );
+      }
+
+      const newCartItem = {
+        id: crypto.randomUUID(),
+        title: product.title,
+        thumbnail: selectedThumbnail,
+        color: selectedColor,
+        size: selectedSize,
+        price: product.discountPrice,
+        quantity,
+      };
+
+      return [...prevCart, newCartItem];
+    });
+    console.log(cart);
     toast.success("Product added to cart!");
   };
 
