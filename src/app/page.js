@@ -1,4 +1,6 @@
-import ProductDetails from "./components/ProductDetails";
+import ProductDetails from "@/app/components/ProductDetails";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Home() {
   const product = {
@@ -29,10 +31,10 @@ export default function Home() {
       },
     ],
     sizes: [
-      { id: "SSize", label: "S", price: 69 },
-      { id: "MSize", label: "M", price: 79 },
-      { id: "LSize", label: "L", price: 89 },
-      { id: "XLSize", label: "XL", price: 99 },
+      { id: 1, label: "S", price: 69 },
+      { id: 2, label: "M", price: 79 },
+      { id: 3, label: "L", price: 89 },
+      { id: 4, label: "XL", price: 99 },
     ],
     regularPrice: 99.0,
     discountPrice: 79.99,
@@ -41,6 +43,7 @@ export default function Home() {
   return (
     <main>
       <ProductDetails product={product} />
+      <ToastContainer />
     </main>
   );
 }

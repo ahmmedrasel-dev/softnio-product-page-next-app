@@ -28,6 +28,16 @@ const ProductDetails = ({ product }) => {
     }
   };
 
+  const handleQuantityChange = (type) => {
+    if (type === "increment") {
+      setQuantity((prev) => prev + 1);
+    } else if (type === "decrement" && quantity > 1) {
+      setQuantity((prev) => prev - 1);
+    }
+  };
+
+  const handleAddToCart = () => {};
+
   return (
     <section className="py-5">
       <div className="container mx-auto px-4">
@@ -71,7 +81,7 @@ const ProductDetails = ({ product }) => {
 
               <p className="text-gray-600">{product.summary}</p>
 
-              <div className="flex gap-4">
+              <div className="flex gap-4 mb-4">
                 <div className="space-y-1">
                   <p className="text-sm text-gray-600">Type</p>
                   <strong>Watch</strong>
@@ -100,7 +110,7 @@ const ProductDetails = ({ product }) => {
               <p className="text-lg">
                 Total Price:{" "}
                 <span id="totalPrice" className="font-semibold">
-                  $69
+                  $0
                 </span>
               </p>
 
@@ -110,13 +120,14 @@ const ProductDetails = ({ product }) => {
                     className="px-4 py-2 border-r"
                     type="button"
                     id="decrement"
+                    onClick={() => handleQuantityChange("decrement")}
                   >
                     -
                   </button>
                   <input
                     type="text"
                     className="w-12 text-center border-none focus:ring-0"
-                    value="1"
+                    value={quantity}
                     id="quantity"
                     readOnly
                   />
@@ -124,12 +135,16 @@ const ProductDetails = ({ product }) => {
                     className="px-4 py-2 border-l"
                     type="button"
                     id="increment"
+                    onClick={() => handleQuantityChange("increment")}
                   >
                     +
                   </button>
                 </div>
 
-                <button className="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                <button
+                  className="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                  onClick={handleAddToCart}
+                >
                   Add to Cart
                 </button>
 
