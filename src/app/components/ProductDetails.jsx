@@ -7,14 +7,27 @@ import ColorVarient from "./ColorVarient";
 import SizeVarient from "./SizeVarient";
 
 const ProductDetails = ({ product }) => {
+  const [cart, setCart] = useState([]);
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(null);
   const [selectedThumbnail, setSelectedThumbnail] = useState(product.thumbnail);
+  const [quantity, setQuantity] = useState(1);
 
   const handleColorChange = (colorId) => {
     const selectedColor = product.colors.find((color) => color.id === colorId);
     if (selectedColor) {
       setSelectedThumbnail(selectedColor.thumbnail);
+      setSelectedColor(selectedColor.name);
     }
   };
+
+  const handleSizeChange = (sizeId) => {
+    const selectedSize = product.sizes.find((size) => size.id === sizeId);
+    if (selectedSize) {
+      setSelectedSize(selectedSize.label);
+    }
+  };
+
   return (
     <section className="py-5">
       <div className="container mx-auto px-4">
@@ -78,7 +91,10 @@ const ProductDetails = ({ product }) => {
               </div>
 
               <div className="space-y-2">
-                <SizeVarient />
+                <SizeVarient
+                  sizes={product.sizes}
+                  onSizeChange={handleSizeChange}
+                />
               </div>
 
               <p className="text-lg">

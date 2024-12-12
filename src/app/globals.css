@@ -74,3 +74,19 @@ body {
 .btn-check:checked + .color-circle::after {
   border-color: currentColor;
 }
+
+/* Size Varient Item Style */
+
+.size-varient-item {
+  border: 1px solid var(--grayColor);
+  margin-right: 12px;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--blackColor);
+}
+
+.btn-check:checked + .size-varient-item {
+  border-color: var(--violetColor);
+  color: var(--violetColor);
+}
