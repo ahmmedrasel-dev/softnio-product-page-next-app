@@ -8,7 +8,7 @@ The **Softnio Product Details Add to Cart** project is a dynamic e-commerce prod
 
 ## Project Live Link
 
-- Live Link [>> Click Here <<](https://product-add-to-cart-modal.netlify.app/)
+- Live Link [>> Click Here <<](https://softnio-product-page-next-app.vercel.app)
 
 ---
 
@@ -83,7 +83,7 @@ The **Softnio Product Details Add to Cart** project is a dynamic e-commerce prod
 3. Install dependencies:
 
    ```bash
-   npm install
+   npm install -f
    ```
 
    or
