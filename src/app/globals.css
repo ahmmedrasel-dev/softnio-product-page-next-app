@@ -90,3 +90,39 @@ body {
   border-color: var(--violetColor);
   color: var(--violetColor);
 }
+
+.modal-checkout-btn {
+  color: var(--whiteColor);
+  background-color: var(--violetColor);
+  border: 1px solid var(--blueColor);
+  border-radius: 3px;
+  padding: 10px 20px;
+}
+
+.modal-shop-btn {
+  color: var(--blackColor);
+  border: 1px solid var(--blueColor);
+  border-radius: 3px;
+  padding: 10px 20px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

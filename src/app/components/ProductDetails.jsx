@@ -6,13 +6,19 @@ import { FaRegStar } from "react-icons/fa6";
 import ColorVarient from "./ColorVarient";
 import SizeVarient from "./SizeVarient";
 import { toast } from "react-toastify";
+import CartModal from "./CartModal";
 
 const ProductDetails = ({ product }) => {
   const [cart, setCart] = useState([]);
   const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedPrice, setSelectedPrice] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedThumbnail, setSelectedThumbnail] = useState(product.thumbnail);
   const [quantity, setQuantity] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   const handleColorChange = (colorId) => {
     const selectedColor = product.colors.find((color) => color.id === colorId);
@@ -23,9 +29,10 @@ const ProductDetails = ({ product }) => {
   };
 
   const handleSizeChange = (sizeId) => {
-    const selectedSize = product.sizes.find((size) => size.id === sizeId);
-    if (selectedSize) {
-      setSelectedSize(selectedSize.label);
+    const size = product.sizes.find((size) => size.id === sizeId);
+    if (size) {
+      setSelectedSize(size.label);
+      setSelectedPrice(size.price);
     }
   };
 
@@ -70,18 +77,16 @@ const ProductDetails = ({ product }) => {
       }
 
       const newCartItem = {
-        id: crypto.randomUUID(),
         title: product.title,
         thumbnail: selectedThumbnail,
         color: selectedColor,
         size: selectedSize,
-        price: product.discountPrice,
+        price: selectedPrice * quantity,
         quantity,
       };
 
       return [...prevCart, newCartItem];
     });
-    console.log(cart);
     toast.success("Product added to cart!");
   };
 
@@ -200,13 +205,18 @@ const ProductDetails = ({ product }) => {
         </div>
 
         <div className="mt-8 flex justify-center">
-          <button className="px-6 py-3 bg-green-500 text-white rounded hover:bg-green-600">
+          <button
+            onClick={openModal}
+            className="px-6 py-3 bg-green-500 text-white rounded hover:bg-green-600"
+          >
             Check Out{" "}
             <span id="total_item" className="ml-2">
               {cart.length}
             </span>
           </button>
         </div>
+
+        <CartModal isOpen={isModalOpen} onClose={closeModal} cart={cart} />
       </div>
     </section>
   );
